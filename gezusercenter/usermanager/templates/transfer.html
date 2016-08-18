@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gezlive</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            font-size: 0;
+        }
+
+        .bg {
+            background: url("/statics/images/slide_pattern.gif");
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            position: fixed;
+            top: 0;
+            opacity: 0.07;
+        }
+
+        .content {
+            background: #fff;
+            width: 100%;
+            height: 350px;
+            padding: 90px 0;
+            position: relative;
+            text-align: center;
+            z-index: 2;
+            margin-top: 10%;
+        }
+
+        .text1 {
+            font-size: 24px;
+            margin: 30px auto 10px auto;
+            color: #8c8c8c;
+            width: 200px;
+            border-left: #ddd 2px solid;
+            border-right: #ddd 2px solid;
+        }
+
+        .text2 {
+            color: #8c8c8c;
+            font-size: 14px;
+        }
+
+        .text2 span {
+            color: #ff5555;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg"></div>
+    <div class="content">
+        <img src="/statics/images/logo.png" style="margin-top: 90px">
+        {% if result %}
+            <div class="text1">登陆成功</div>
+        {% else %}
+            <div class="text1">登陆超时</div>
+        {% endif %}
+        <div class="text2">系统将在&nbsp;<span id="countdown">{{ seconds }}</span>&nbsp;秒后带您跳转至{{ page }}</div>
+    </div>
+</body>
+<script>
+    var count = {{ seconds }};
+    window.onload = setInterval('countdown()', 1000);
+
+    var countdown = function(){
+        count--;
+        document.getElementById('countdown').innerHTML = count;
+        {% autoescape off %}
+        if(count == 0) {
+            location.href = encodeURI("{{ url }}");
+            count = 1;
+        };
+        {% endautoescape %}
+    }
+</script>
+</html>

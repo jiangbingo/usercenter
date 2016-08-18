@@ -1,0 +1,315 @@
+<link type="text/css" rel="stylesheet" media="screen"
+      href="/statics/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" media="screen"
+      href="/statics/css/base.css">
+<link type="text/css" rel="stylesheet" media="screen"
+      href="/statics/css/products/product.css">
+<link type="text/css" rel="stylesheet" media="screen"
+      href="/statics/plugins/datetimepicker/bootstrap-datetimepicker.min.css">
+<div class="main-body content-body-main">
+    {% csrf_token %}
+    {#  <h2 class="col-md-3"> {{ cname }} - <span>属性设置</span></h2>#}
+    {#  <div class="utils-area col-md-2 right">#}
+    {#    <a href="/product/category" role="button" class="btn btn-important" > 返回到分类设置 </a>#}
+    {#  </div>#}
+    <input type="hidden" name="page_type" value="0">
+    <div>
+        <div class="select">
+            <div class="left select-table">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品牌：
+                <input id="product-Search"
+                       class="select-text form-control js-brand"
+                       placeholder="搜索...">
+            </div>
+            <div class="left select-table">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系列：
+                <input id="product-Search"
+                       class="select-text form-control js-series"
+                       placeholder="搜索...">
+            </div>
+            <div class="left select-filter">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分类：
+                <select name="product1" class="select-text form-control js-c1">
+                    <option value="0">请选择</option>
+                </select>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select name="product2"
+                        class="select-product form-control js-c2">
+                    <option value="0">请选择</option>
+                </select>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select name="product3"
+                        class="select-product form-control js-c3">
+                    <option value="0">请选择</option>
+                </select>
+            </div>
+            <button id="select-Search" class="btn btn-primary js-search-button"
+                    type="button">查询
+            </button>
+        </div>
+        <div class="select">
+            <div class="left select-table">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;厂家：
+                <input id="product-Search"
+                       class="select-text form-control js-manufactor"
+                       placeholder="搜索...">
+            </div>
+            <div class="left select-table">
+                &nbsp;&nbsp;&nbsp;&nbsp;关键字：
+                <input id="product-Search"
+                       class="select-text form-control js-kw"
+                       placeholder="搜索...">
+            </div>
+            <div class="left select-table">
+                &nbsp;&nbsp;&nbsp;&nbsp;产品编号：
+                <input id="product-Search"
+                       class="select-text form-control js-pn"
+                       placeholder="搜索...">
+            </div>
+            <div class="left select-table">
+                <div class="dateText first left">上传日期：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                <div class="input-group date form_date"
+                     data-date-format="yyyy-mm-dd">
+                    <input sid="Date-update"
+                           class="form-control select-update-time js-df"
+                           size="16" type="text" id="startDate-update"
+                           value=""
+                           readonly>
+                    <span class="input-group-addon"><span
+                            class="glyphicon glyphicon-remove"></span></span>
+                </div>
+            </div>
+            <div class="left select-table">
+                <div class="dateText left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                <div class="input-group date form_date"
+                     data-date-format="yyyy-mm-dd">
+                    <input sid="Date-update"
+                           class="form-control select-update-time js-dt"
+                           size="16" type="text" id="endDate-update"
+                           value="" readonly>
+                    <span class="input-group-addon"><span
+                            class="glyphicon glyphicon-remove"></span></span>
+                    </span>
+                </div>
+            </div>
+            {#            <button class="btn btn-primary select1 select2" type="button">导出</button>#}
+        </div>
+    </div>
+    <div class="product-body left">
+        <div class="equal">
+            <div class="row">
+                <div name="img">图片</div>
+                <div class="js-header" name="n">名称</div>
+                <div class="js-header" name="pn">产品编号</div>
+                <div class="js-header" name="c1">一级分类</div>
+                <div class="js-header" name="c2">二级分类</div>
+                <div class="js-header" name="c3">三级分类</div>
+                <div class="js-header" name="c">厂家</div>
+                <div class="js-header" name="b">品牌</div>
+                <div class="js-header" name="s">系列</div>
+                <div class="js-header" name="d">上传日期</div>
+                <div name="status">状态</div>
+                <div name="edit">编辑</div>
+            </div>
+            {% if products|length > 1 %}
+                {% for product in products %}
+                    {% autoescape off %}
+                        <br>
+                        <div class="row" data-name="main">
+                            <div name="img"><img src="{{ product.charlet }}"
+                                                 class="inline-table product-info-box-img">
+                            </div>
+                            <div name="n">{{ product.name }}</div>
+                            <div name="pn">{{ product.product_no }}</div>
+                            <div name="c1">{{ product.c1 }}</div>
+                            <div name="c2">{{ product.c2 }}</div>
+                            <div name="c3">{{ product.c3 }}</div>
+                            <div name="c">{{ product.manufactor }}</div>
+                            <div name="b">{{ product.brand }}</div>
+                            <div name="s">{{ product.series }}</div>
+                            <div name="d">{{ product.create_time }}</div>
+                            <div name="status"
+                                 class="js-status-text-{{ product.id }}">{{ product.status_string }}</div>
+                            <div name="edit">
+                                <a href="javascript:void(0);"
+                                   class="js-product-detail" data-toggle="modal" data-backdrop="static"
+                                   data-target="#menuFromDialog" data-menuId="0"
+                                   data-id="{{ product.id }}">详细信息</a>
+                                <br><a
+                                    href="javascript:void(0);" class="js-active"
+                                    {% if product.status %}style="display: none;"{% endif %}
+                                    data-id="{{ product.id }}">启用</a>
+                                <a
+                                        href="javascript:void(0);"
+                                        class="js-void"
+                                        {% if product.status %}{% else %}style="display: none;"{% endif %}
+                                        data-id="{{ product.id }}">禁用</a>
+                            </div>
+                        </div>
+                    {% endautoescape %}
+                {% endfor %}
+            {% else %}
+                <br>
+                <div class="row" data-name="main">
+                <h1 class="center">暂无符合条件的查询信息</h1>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="right pagination-div">
+            <nav>
+                <ul class="pagination">
+                    {% ifnotequal cur_page 1 %}
+                        <li><a href="/product/pdt">|&lt;</a></li>
+                        <li>
+                            <a href="/product/pdt?page_id={{ cur_page|add:-1 }}&{{ url }}"><span>&lt;</span></a>
+                        </li>
+                    {% else %}
+                        <li><span style="color: #d1d1d1;">|&lt;</span></li>
+                        <li><span style="color: #d1d1d1;">&lt;</span></li>
+                    {% endifnotequal %}
+
+                    <li>
+                        <a href="/product/pdt?page_id={{ cur_page }}&{{ url }}">{{ cur_page }}</a>
+                    </li>
+
+                    {% ifnotequal cur_page total_page %}
+                        <li>
+                            <a href="/product/pdt?page_id={{ cur_page|add:1 }}&{{ url }}">{{ cur_page|add:1 }}</a>
+                        </li>
+                    {% endifnotequal %}
+
+                    {% if next %}
+                        <li>
+                            <a href="/product/pdt?page_id={{ cur_page|add:2 }}&{{ url }}"><span>&gt;</span></a>
+                        </li>
+                    {% else %}
+                        <li><span style="color: #d1d1d1;">&gt;</span></li>
+                    {% endif %}
+
+                    {% ifnotequal cur_page total_page %}
+                        <li>
+                            <a href="/product/pdt?page_id={{ total_page }}&{{ url }}"><span>&gt;|</span></a>
+                        </li>
+                    {% else %}
+                        <li><span style="color: #d1d1d1">&gt;|</span></li>
+                    {% endifnotequal %}
+                </ul>
+            </nav>
+        </div>
+        <div class="modal fade" id="menuFromDialog" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">详细信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="tab" data-name="detail-tabs">
+                            <div class="tab-title">
+                                <div class="selected">产品信息</div>
+                                <div>产品规格</div>
+                                <div>产品参数</div>
+                                <div>产品图片</div>
+                                <div>备注信息</div>
+                            </div>
+                            <div class="tab-main">
+                                <div>
+                                    <table>
+                                        <tr>
+                                            <th width="200px">产品编号</th>
+                                            <td width="300px" class="js-modal-product-no"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>产品名称</th>
+                                            <td class="js-modal-product-name"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>产品分类</th>
+                                            <td class="js-modal-product-category"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>厂家名称</th>
+                                            <td class="js-modal-product-manufactor"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>品牌</th>
+                                            <td class="js-modal-product-brand"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>系列</th>
+                                            <td class="js-modal-product-series"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div>
+                                    <table>
+                                        <tr>
+                                            <th width="200px">规格编号</th>
+                                            <td width="300px" class="js-modal-model-no"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>产品型号</th>
+                                            <td class="js-modal-model-version"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>长宽高</th>
+                                            <td class="js-modal-model-size"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>材质</th>
+                                            <td class="js-modal-model-material"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>颜色</th>
+                                            <td class="js-modal-model-color"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div>
+                                    <ul class="product-param list-type-none js-modal-args">
+                                    </ul>
+                                </div>
+                                <div>
+                                    <img class="js-modal-product-img"
+                                         src="../../statics/imgs/icon/title-icon.png">
+                                </div>
+                                <div>
+                                    <p class="js-modal-product-remarks"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/statics/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/statics/js/products/product.js"></script>
+<script type="text/javascript" src="/statics/js/base.js"></script>
+<script type="text/javascript"
+        src="/statics/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript"
+        src="/statics/plugins/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="/statics/js/bootstrap.min.js"></script>
+<script src="/statics/js/newTabs.js"></script>
+<script type="text/javascript">
+    var category = {% autoescape off %}{{ category }}{% endautoescape %};
+    var url = {% autoescape off %}{{ urls }}{% endautoescape %};
+    $(function () {
+        productApp.init();
+        newTabs.iTab($('div[data-name=detail-tabs]'));
+        for(var i = 0; i <= $('.modal-dialog').length; i++){
+            baseApp.startDrag($('.modal-dialog .modal-header')[i], $('.modal-dialog')[i]);
+        }
+    });
+</script>

@@ -1,0 +1,331 @@
+<link type="text/css" rel="stylesheet" media="screen"
+      href="/statics/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" media="screen"
+      href="/statics/css/base.css">
+<link type="text/css" rel="stylesheet" media="screen"
+      href="/statics/css/products/category.css">
+<link type="text/css" rel="stylesheet" media="screen"
+      href="/statics/css/font-awesome.min.css">
+<link type="text/css" rel="stylesheet" media="screen"
+      href="/statics/plugins/sweetalert/sweetalert.css">
+<div class="main-body content-body-main">
+    {% csrf_token %}
+    {#  <h2 class="col-md-3"> {{ cname }} - <span>属性设置</span></h2>#}
+    {#  <div class="utils-area col-md-2 right">#}
+    {#    <a href="/product/category" role="button" class="btn btn-important" > 返回到分类设置 </a>#}
+    {#  </div>#}
+    <div class="category-top">
+        <div>
+            关键字：
+            <input id="product-Search"
+                   class="select-text form-control js-kw"
+                   placeholder="搜索...">
+        </div>
+        <div>
+            <button id="select-Search" data-type="normal"
+                    class="btn btn-primary select1 select2 js-search-button"
+                    type="button">查询
+            </button>
+            <button id="select-Search" data-type="normal"
+                    class="btn btn-primary select1 select2 js-upload-button"
+                    type="button" data-toggle="modal" data-backdrop="static"
+                    data-target="#importForm" data-menuId="0">批量上传
+            </button>
+            <button id="select-Search" data-type="normal"
+                    class="btn btn-primary select1 select2 js-batch-delete-button"
+                    type="button">批量删除
+            </button>
+            <button id="select-Search" data-type="normal"
+                    class="btn btn-primary select1 select2 js-export-button"
+                    type="button">导出
+            </button>
+            <button id="select-Search" data-for="batch-delete"
+                    class="btn btn-primary" data-type="1"
+                    type="button">确认删除
+            </button>
+            <button id="select-Search" data-for="batch-delete" data-type="0"
+                    class="btn btn-default"
+                    type="button">取消删除
+            </button>
+        </div>
+    </div>
+    <div class="category-main">
+        <div class="category-main-title">一级分类</div>
+        <div class="category-main-title">二级分类</div>
+        <div class="category-main-title">三级分类</div>
+        <div class="category-main-title">厂家</div>
+        <div class="category-main-title">品牌</div>
+        <div class="category-main-title">系列</div>
+    </div>
+    <div class="category-main">
+        <div class="category-main-list">
+            {% for category in categories %}
+                <div class="header js-first-category" data-id="{{ category.id }}">
+                    <div class="center-line">{{ category.name }}</div>
+                </div>
+            {% endfor %}
+        </div>
+
+
+        <div class="category-main-list">
+            <div class="edit">
+                <span class="icon-plus-sign js-add-second-category fa fa-plus"></span>
+                <span class="icon-plus-sign js-delete-second-category fa fa-close"></span>
+                <span class="icon-plus-sign js-edit-second-category fa fa-edit"></span>
+            </div>
+            <div class=" js-second-category-div overflow">
+
+            </div>
+
+        </div>
+        <div class="category-main-list">
+            <div class="edit">
+                <span class="icon-plus-sign js-add-third-category fa fa-plus"></span>
+                <span class="icon-plus-sign js-delete-third-category fa fa-close"></span>
+                <span class="icon-plus-sign js-edit-third-category fa fa-edit"></span>
+            </div>
+            <div class=" js-third-category-div overflow">
+            </div>
+        </div>
+
+        <div class="category-main-list">
+            <div class="edit">
+                <span class="icon-plus-sign js-add-manufactor fa fa-plus"></span>
+                <span class="icon-plus-sign js-delete-manufactor fa fa-close"></span>
+                <span class="icon-plus-sign js-edit-manufactor fa fa-edit"></span>
+            </div>
+            <div class=" js-manufactor-div overflow">
+            </div>
+
+        </div>
+        <div class="category-main-list">
+            <div class="edit">
+                <span class="icon-plus-sign js-add-brand fa fa-plus"></span>
+                <span class="icon-plus-sign js-delete-brand fa fa-close"></span>
+                <span class="icon-plus-sign js-edit-brand fa fa-edit"></span>
+            </div>
+            <div class=" js-brand-div overflow">
+            </div>
+
+        </div>
+        <div class="category-main-list">
+            <div class="edit">
+                <span class="icon-plus-sign js-add-series fa fa-plus last"></span>
+                <span class="icon-plus-sign js-delete-series fa fa-close last"></span>
+                <span class="icon-plus-sign js-edit-series fa fa-edit last"></span>
+                <span class="icon-plus-sign js-setting-series fa fa-cog last"></span>
+            </div>
+            <div class=" js-series-div overflow">
+            </div>
+        </div>
+    </div>
+    <div class="js-search-result">
+        <div class="category-main search-detail">
+            <div class="category-main-title">一级分类</div>
+            <div class="category-main-title">二级分类</div>
+            <div class="category-main-title">三级分类</div>
+            <div class="category-main-title">厂家</div>
+            <div class="category-main-title">品牌</div>
+            <div class="category-main-title">系列</div>
+            <div class="category-main-title">设置</div>
+        </div>
+    </div>
+    <div data-name="nav">
+        <nav>
+            <div data-name="navLeft">&leftarrow;</div>
+            <select class="form-control" data-name="navPager">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+            <div data-name="navRight">&rightarrow;</div>
+        </nav>
+    </div>
+</div>
+<div class="modal fade" id="addCategoryForm" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="addCategoryFormLabel">添加分类:</h4>
+            </div>
+            <div class="modal-body-2">
+                <div class="modal-text left js-modal-category-label">分类名称:</div>
+                <input name="name" class="js-modal-category-name select-text form-control">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary js-modal-save-button">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteCategoryForm" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">删除分类:</h4>
+            </div>
+            <div class="modal-body-1">
+                <div>是否删除该分类？</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary js-modal-confirm-button">保存</button>
+                <button type="button" class="btn btn-default js-modal-cancel-button">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="importForm" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">批量上传</h4>
+            </div>
+            <div class="modal-body-3">
+                <div class="modal-text">选择文件:</div>
+                <input type="text" class="form-control" placeholder="选择上传文件" readonly>
+                <input name="file" type="file" id="file">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary js-upload-button">上传</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="attentionForm" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">警告</h4>
+            </div>
+            <div class="modal-body-3">
+                <div class="attention-text"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="settingForm" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">属性设置</h4>
+            </div>
+            <div class="modal-body-4">
+                <div class="modal-row">
+                    <div>属性名</div>
+                    <div>属性值</div>
+                    <div>允许搜索</div>
+                    <div>
+                        <button class="btn btn-default modal-btn" data-name="add">新增属性</button>
+                    </div>
+                </div>
+                <div class="modal-row js-modal-attribute-row">
+                    <div>123</div>
+                    <div>
+                        <select class="form-control">
+                            <option>test</option>
+                            <option>test</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select class="form-control">
+                            <option>test</option>
+                            <option>test</option>
+                        </select>
+                    </div>
+                    <div class="modal-span"><span class="fa fa-cog"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span
+                            class="fa fa-close"></span></div>
+                </div>
+                <div class="modal-row js-modal-attribute-row">
+                    <div>123</div>
+                    <div>
+                        <select class="form-control">
+                            <option>test</option>
+                            <option>test</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select class="form-control">
+                            <option>test</option>
+                            <option>test</option>
+                        </select>
+                    </div>
+                    <div class="modal-span"><span class="fa fa-cog"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span
+                            class="fa fa-close"></span></div>
+                </div>
+            </div>
+            <div class="modal-body-5">
+                <div class="modal-row js-attribute-default-rows">
+                    <div>{ { 放属性名 } }的值:</div>
+                    <div data-name="action-box"><span name="edit" class="fa fa-edit"></span><span name="add" class="fa fa-plus"></span><span name="remove" class="fa fa-remove"></span></div>
+                    <input type="text" class="form-control js-value-text" readonly><span class="js-value-text-label">确定</span>
+                </div>
+            </div>
+            <div class="modal-body-6">
+                <div class="modal-row">
+                    <div>属性名:</div><input data-type type="text" name="new-attribute-name" class="form-control">
+                </div>
+                <div class="modal-row">
+                    <div>属性值:</div><textarea data-type name="new-attribute-value" class="form-control"></textarea>
+                </div>
+                <div class="modal-row">
+                    <div>允许搜索:</div><select data-type type="text" name="new-attribute-searchable" class="form-control">
+                        <option value="1">允许</option><option value="0">不允许</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-action="save">保存</button>
+                <button type="button" class="btn btn-default" data-action="cancel">取消</button>
+                <button type="button" class="btn btn-default" data-for="modal-body-5">back</button>
+                <button type="button" class="btn btn-primary" data-for="modal-body-6">保存</button>
+                <button type="button" class="btn btn-default" data-for="modal-body-6">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/statics/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/statics/js/base.js"></script>
+<script src="/statics/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/statics/js/newTabs.js"></script>
+<script type="text/javascript" src="/statics/plugins/sweetalert/sweetalert.min.js"></script>
+<script type="text/javascript" src="/statics/js/products/category.js"></script>
+<script type="text/javascript">
+    $(function () {
+        categoryApp.init();
+        for(var i = 0; i <= $('.modal-dialog').length; i++){
+            baseApp.startDrag($('.modal-dialog .modal-header')[i], $('.modal-dialog')[i]);
+        }
+    });
+</script>
