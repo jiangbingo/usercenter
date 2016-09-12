@@ -1,9 +1,11 @@
 # -- encoding: utf-8 --
 __author__ = 'PD-002'
-import os
 import datetime
+import os
 from hashlib import md5
+
 from django.conf import settings
+
 
 def get_models_path(*args):
     today = datetime.date.today()

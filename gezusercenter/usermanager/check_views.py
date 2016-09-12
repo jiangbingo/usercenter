@@ -4,20 +4,23 @@ try:
     import simplejson as json
 except:
     import json
-import uuid
-import urllib
-import urllib2
+import base64
 import random
 import time
-import base64
-from django.core.mail import send_mail
+import urllib
+import urllib2
+import uuid
+
 from django.conf import settings
 from django.core.cache import cache
+from django.core.mail import send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 from toolkit.createimgcode import CreateImgCode
 from toolkit.mylogger import Logger
+
 from .models import CustomerAccount
 from .user_views import get_request_data, my_response
+
 
 class EmailCheckView:
     """

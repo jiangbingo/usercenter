@@ -1,13 +1,15 @@
 # -*- encoding: utf-8 -*-
-from rest_framework.decorators import detail_route, list_route
-from rest_framework import viewsets
-from products.product_utils import *
-from products.models import ProductCategoryAttributeValue
-from rest_framework import status
-from rest_framework.response import Response
 from django.core.cache import cache
-from pre_check import PermissionCheck
+from products.models import ProductCategoryAttributeValue
+from products.product_utils import *
+from rest_framework import status
+from rest_framework import viewsets
+from rest_framework.decorators import detail_route, list_route
+from rest_framework.response import Response
 from toolkit.mylogger import Logger
+
+from pre_check import PermissionCheck
+
 
 class SeriesViewSet(PermissionCheck, viewsets.ViewSet):
     def list(self, request):

@@ -3,11 +3,11 @@ try:
     import simplejson as json
 except:
     import json
-from django.core.urlresolvers import reverse
-from django.test import TestCase
-from products.models import Product,ProductCategory
 from accounts.models import Account, AccountAdmin, AccountAdminRole
+from django.test import TestCase
 from gezbackend.utils import get_random_code, get_password
+from products.models import Product,ProductCategory
+
 
 # Create your tests here.
 class ProductTest(TestCase):

@@ -5,12 +5,15 @@ try:
 except:
     import json
 import base64
-from django.http import HttpResponse
+
 from django.core.files.base import ContentFile
-from .models import (OtherAccount, Designer, Distributor)
-from .user_views import get_request_data
+from django.http import HttpResponse
 from sdk.pre_check import PermissionCheck
 from toolkit.mylogger import Logger
+
+from .models import (OtherAccount, Designer, Distributor)
+from .user_views import get_request_data
+
 
 class SyncMessage(PermissionCheck):
     """

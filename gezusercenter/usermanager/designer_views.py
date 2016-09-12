@@ -6,11 +6,14 @@ try:
 except:
     import json
 import base64
-from django.core.files.base import ContentFile
+
 from django.core.cache import cache
-from .models import PendingApprove, CustomerAccount, Designer
+from django.core.files.base import ContentFile
 from toolkit.mylogger import Logger
+
+from .models import PendingApprove, CustomerAccount, Designer
 from .user_views import get_request_data, my_response
+
 
 class DesignerView:
     """

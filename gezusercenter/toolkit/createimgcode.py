@@ -1,12 +1,14 @@
 # -- encoding: utf-8 --
 __author__ = 'PD-002'
 
-import os
-import string
-import random
 import StringIO
 import base64
+import os
+import random
+import string
+
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
+
 
 class CreateImgCode:
     """

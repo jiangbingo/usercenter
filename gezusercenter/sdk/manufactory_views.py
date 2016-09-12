@@ -6,15 +6,18 @@ try:
 except:
     import json
 import base64
+
 from django.core.files.base import ContentFile
-from .pre_check import PermissionCheck
+from products.models import Manufactor, ProductBrand, ProductBrandSeries, CustomerManufactor
+from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.decorators import list_route
 from rest_framework.response import Response
-from rest_framework import status
-from usermanager.models import PendingApprove, CustomerAccount, AccountKey
-from products.models import Manufactor, ProductBrand, ProductBrandSeries, CustomerManufactor
 from toolkit.mylogger import Logger
+from usermanager.models import PendingApprove, CustomerAccount, AccountKey
+
+from .pre_check import PermissionCheck
+
 
 class ManufactoryViewSet(PermissionCheck, viewsets.ViewSet):
     """

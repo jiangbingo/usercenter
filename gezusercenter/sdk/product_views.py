@@ -1,25 +1,26 @@
 # -*- encoding: utf-8 -*-
+import ConfigParser
 import base64
 import hashlib
 import os
-import ConfigParser
 from zipfile import ZipFile
-from rest_framework import viewsets
+
+from django.core.cache import cache
 from django.core.files.base import ContentFile
-from products.product_utils import *
-from rest_framework import status
-from rest_framework.decorators import list_route
-from rest_framework.response import Response
 from django.db.models import Q
-from pre_check import PermissionCheck
-from usermanager.models import AccountKey
 from products.models import (Product, ProductAttribute, ProductModelPreviews,
                              ProductModelFiles, ProductDistributor, ProductModel, ProductModelZip)
-from django.core.cache import cache
-from toolkit.utils import get_models_path, get_models_base_path
-from toolkit.xmltodict import parse
-from toolkit.convert_obj_three import createjs
+from products.product_utils import *
+from rest_framework import status
+from rest_framework import viewsets
+from rest_framework.decorators import list_route
+from rest_framework.response import Response
 from toolkit.mylogger import Logger
+from toolkit.utils import get_models_path, get_models_base_path
+from usermanager.models import AccountKey
+
+from pre_check import PermissionCheck
+
 
 class ProductViewSet(PermissionCheck, viewsets.ViewSet):
     """

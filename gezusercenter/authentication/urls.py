@@ -1,8 +1,8 @@
 # -- encoding: utf-8 --
 __author__ = 'PD-002'
 
-from django.conf.urls import url
 from authentication.views import CheckUser, MapUser, vsersion
+from django.conf.urls import url
 
 urlpatterns = [
     url(r'^check/$', CheckUser.check, name="check"),

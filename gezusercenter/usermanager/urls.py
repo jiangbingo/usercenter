@@ -2,13 +2,14 @@
 __author__ = 'PD-002'
 
 from django.conf.urls import url
-from .user_views import RegisterView, QueryView, UpdateView, LoginView, LogoutView
-from .check_views import EmailCheckView, PhoneCheckView, CodeCheckView
+
 from .approve_views import MessageView
+from .check_views import EmailCheckView, PhoneCheckView, CodeCheckView
 from .designer_views import DesignerView
-from .user_views import RecodView
 from .feedback_views import feed_back
 from .other_views import SyncMessage
+from .user_views import RecodView
+from .user_views import RegisterView, QueryView, UpdateView, LoginView, LogoutView
 
 urlpatterns = [
     # 用户注册

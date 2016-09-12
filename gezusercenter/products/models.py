@@ -4,10 +4,11 @@ try:
 except:
     import json
 import time
+
 from django.db import models
-from django.conf import settings
 from toolkit.randomcode import get_random_code
 from toolkit.utils import get_resources_path, get_models_path
+
 
 # 产品数据表
 class Product(models.Model):

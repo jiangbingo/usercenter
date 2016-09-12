@@ -6,8 +6,10 @@ try:
 except:
     import json
 from urllib import unquote
+
 from authentication.views import CheckUser
 from django.http import HttpResponse
+
 
 class PermissionCheck(object):
     """

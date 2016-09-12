@@ -123,14 +123,13 @@ AlteredQualia http://alteredqualia.com
 """
 
 import fileinput
-import operator
-import random
-import os.path
 import getopt
-import sys
-import struct
-import math
 import glob
+import math
+import os.path
+import random
+import struct
+import sys
 
 # #####################################################
 # Configuration

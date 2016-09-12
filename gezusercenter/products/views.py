@@ -4,22 +4,21 @@ try:
 except:
     import json
 import datetime
-from django.utils import timezone
-from django.views.generic import TemplateView, ListView
-from django.shortcuts import render
+
 from braces.views import LoginRequiredMixin
-from .models import Product, ProductCategory, ProductBrand, ProductBrandSeries, \
-    CategoryManufactor, ProductModelFiles, \
-    ProductModelPreviews, Manufactor
+from django.core.cache import cache
 from django.core.paginator import Paginator
 from django.http import HttpResponse
-from django.core.cache import cache
-from django.db.models import Q
+from django.shortcuts import render
+from django.views.generic import TemplateView
+
 from product_utils import *
+from .models import Product, CategoryManufactor, ProductModelFiles, \
+    ProductModelPreviews
+
 # from gezbackend.utils import *
 
 import xlrd
-import xlwt
 from xlsxwriter.workbook import Workbook
 import StringIO
 

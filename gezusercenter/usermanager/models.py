@@ -1,9 +1,11 @@
 # -*- encoding:utf-8 -*-
 
 import datetime
+
 from django.db import models
 from toolkit.randomcode import utc2local
 from toolkit.utils import get_resources_path, decode_role, encode_role
+
 
 class CustomerAccount(models.Model):
     SOURCE_MAIN = 0

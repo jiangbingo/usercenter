@@ -1,8 +1,11 @@
 # coding:utf-8
 import json
 import time
-from models import ProductCategory, ProductBrand, ProductBrandSeries, ProductCategoryAttribute, Manufactor
+
 from django.db.models import Q
+
+from models import ProductCategory, ProductBrand, ProductBrandSeries, ProductCategoryAttribute, Manufactor
+
 
 class Node(object):
     def __init__(self, _id, pid, obj):

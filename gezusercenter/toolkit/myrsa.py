@@ -5,9 +5,10 @@ try:
     import simplejson as json
 except:
     import json
-import os
-import rsa
 import base64
+import os
+
+import rsa
 
 class RsaServer:
     """

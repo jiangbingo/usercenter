@@ -1,11 +1,13 @@
 # -- encoding: utf-8 --
 __author__ = 'PD-002'
 
-import os
-import time
 import binascii
+import os
 import random
+import time
+
 from django.utils import timezone
+
 
 def get_random_code(length=8, symbol=False):
     """generate a security key"""

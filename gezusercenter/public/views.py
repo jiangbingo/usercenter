@@ -1,10 +1,11 @@
 #!-*-encoding: utf-8 -*-
 __author__ = 'PD-002'
 
-from django.core.cache import cache
 from django.db.models import Q
-from .models import Province, City, Area
 from usermanager.user_views import get_request_data, my_response
+
+from .models import Province, City, Area
+
 
 class Location:
     """

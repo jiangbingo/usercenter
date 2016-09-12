@@ -4,13 +4,15 @@ try:
     import simplejson as json
 except:
     import json
-from rest_framework import viewsets
-from rest_framework import status
-from rest_framework.response import Response
 from django.core.cache import cache
-from toolkit.mylogger import Logger
 from products.models import ModelAttribute
+from rest_framework import status
+from rest_framework import viewsets
+from rest_framework.response import Response
+from toolkit.mylogger import Logger
+
 from pre_check import PermissionCheck
+
 
 class ModelAttributeViewSet(PermissionCheck, viewsets.ViewSet):
     """

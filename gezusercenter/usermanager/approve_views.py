@@ -6,13 +6,16 @@ try:
 except:
     import json
 import base64
-from django.core.files.base import ContentFile
-from django.core.cache import cache
+
 from django.conf import settings
+from django.core.cache import cache
+from django.core.files.base import ContentFile
 from django.db.models import Q
 from toolkit.mylogger import Logger
+
+from .models import CustomerAccount, PendingApprove
 from .user_views import get_request_data, my_response
-from .models import CustomerAccount, PendingApprove, Distributor
+
 
 class MessageView:
     """

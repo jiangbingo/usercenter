@@ -1,13 +1,13 @@
-from django.conf.urls import include, url
 from rest_framework import routers
+
 from .attribute_views import AttributeViewSet
 from .category_views import CategoryViewSet
+from .checkupdate_views import CheckUpdateViewSet
+from .distributor_views import DistributorViewSet
+from .manufactory_views import ManufactoryViewSet
+from .modelattr_views import ModelAttributeViewSet
 from .product_views import ProductViewSet
 from .series_views import SeriesViewSet
-from .checkupdate_views import CheckUpdateViewSet
-from .manufactory_views import ManufactoryViewSet
-from .distributor_views import DistributorViewSet
-from .modelattr_views import ModelAttributeViewSet
 
 router = routers.SimpleRouter()
 router.register(r'category', CategoryViewSet, 'cateogry')

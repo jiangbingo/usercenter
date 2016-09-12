@@ -7,14 +7,17 @@ except:
 import base64
 import time
 from datetime import datetime
+
+from django.core.cache import cache
+from django.utils import timezone
+from products.models import ProductCategory, ProductBrand, ProductCategoryAttribute
+from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
-from rest_framework import status
-from pre_check import PermissionCheck
-from products.models import ProductCategory, ProductBrand, ProductCategoryAttribute
-from django.utils import timezone
-from django.core.cache import cache
 from toolkit.mylogger import Logger
+
+from pre_check import PermissionCheck
+
 
 class CheckUpdateViewSet(PermissionCheck, viewsets.ViewSet):
     """

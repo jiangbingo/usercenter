@@ -11,8 +11,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
-import os
 import ConfigParser
+import os
+
 config_file = ConfigParser.ConfigParser()
 
 config_file.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config.ini'))

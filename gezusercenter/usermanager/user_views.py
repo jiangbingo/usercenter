@@ -3,19 +3,21 @@ try:
     import simplejson as json
 except:
     import json
-import uuid
 import base64
 import re
+import uuid
 from urllib import unquote, urlencode
+
+from authentication.views import CheckUser
+from django.conf import settings
+from django.core.cache import cache
 from django.core.files.base import ContentFile
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import SimpleTemplateResponse
-from django.core.cache import cache
-from django.conf import settings
-from usermanager.models import *
-from toolkit.utils import encrypt_passwd
-from authentication.views import CheckUser
 from toolkit.mylogger import Logger
+from toolkit.utils import encrypt_passwd
+from usermanager.models import *
+
 
 class RegisterView:
     """
